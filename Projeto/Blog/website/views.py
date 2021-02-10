@@ -1,6 +1,11 @@
 from django.shortcuts import render
+from .models import Post
 
 def hello_blog(request):
-    lista = ['nathan', 'marco', 'joao', 'carol', 'carla']
-    data = {'name': 'Curso de django 3', 'lista_tec': lista}
+    list_posts = Post.objects.filter(approved=True)
+    
+    data = {
+        'posts': list_posts
+    }
+    
     return render(request, 'index.html', data)
